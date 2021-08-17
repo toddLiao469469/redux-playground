@@ -4,3 +4,10 @@ export function fetchCount(amount = 1) {
     setTimeout(() => resolve({ data: amount }), 500)
   );
 }
+
+
+export function fetchInitialCount() {
+  return new Promise<{data: number}>((resolve) =>
+    setTimeout(() => resolve({ data: 20 }), 500)
+  );
+}

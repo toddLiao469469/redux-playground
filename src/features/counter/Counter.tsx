@@ -6,6 +6,7 @@ import {
   increment,
   incrementByAmount,
   incrementAsync,
+  initialCountAsync,
   incrementIfOdd,
   selectCount,
 } from './counterSlice';
@@ -15,7 +16,7 @@ export function Counter() {
   const count = useAppSelector(selectCount);
   const dispatch = useAppDispatch();
   const [incrementAmount, setIncrementAmount] = useState('2');
-
+  
   const incrementValue = Number(incrementAmount) || 0;
 
   return (
@@ -61,6 +62,12 @@ export function Counter() {
           onClick={() => dispatch(incrementIfOdd(incrementValue))}
         >
           Add If Odd
+        </button>
+        <button
+          className={styles.asyncButton}
+          onClick={() => dispatch(initialCountAsync())}
+        >
+          Fetch Initial Count Async
         </button>
       </div>
     </div>
