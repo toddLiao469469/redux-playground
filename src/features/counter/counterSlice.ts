@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { all, delay, put, take, takeEvery } from 'redux-saga/effects';
 import { RootState, AppThunk } from '../../app/store';
 import { fetchCount, fetchInitialCount } from './counterAPI';
 
@@ -81,4 +82,24 @@ export const incrementIfOdd = (amount: number): AppThunk => (
   }
 };
 
+export function* helloSaga() {
+  console.log('Hello Sagas!')
+}
+
+export function* incrementSaga() {
+  yield delay(1000)
+  yield put(increment())
+}
+
+// 我們觀察的 Saga：在每個 INCREMENT_ASYNC 產生一個新的 incrementAsync task
+export function* watchIncrementAsync() {
+  yield takeEvery('INCREMENT_ASYNC', incrementSaga)
+}
+
+export  function* rootSaga() {
+  yield all([
+    helloSaga(),
+    watchIncrementAsync()
+  ])
+}
 export default counterSlice.reducer;

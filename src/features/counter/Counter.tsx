@@ -58,6 +58,12 @@ export function Counter() {
           Add Async
         </button>
         <button
+          className={styles.asyncButton}
+          onClick={() => dispatch({type:'INCREMENT_ASYNC'})}
+        >
+          Add Saga
+        </button>
+        <button
           className={styles.button}
           onClick={() => dispatch(incrementIfOdd(incrementValue))}
         >
